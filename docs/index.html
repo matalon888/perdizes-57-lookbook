@@ -29,8 +29,8 @@ h1{font:400 clamp(40px,7vw,84px)/.95 var(--display);margin:0;letter-spacing:-.01
 .lede{max-width:60ch;color:var(--muted);margin:14px 0 0}
 .spec{font:400 12px/1.7 var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
 .spec b{color:var(--ink);font-weight:500}
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:8px;flex-wrap:wrap;padding-block:14px;border-bottom:1px solid var(--line)}
-nav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font:500 13px/1 var(--body);padding:8px 12px 8px 8px;border:1px solid var(--line);border-radius:99px;background:var(--paper)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-block:14px;border-bottom:1px solid var(--line)}
+nav a{flex:none;display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font:500 13px/1 var(--body);padding:8px 12px 8px 8px;border:1px solid var(--line);border-radius:99px;background:var(--paper)}
 nav a:hover,nav a:focus-visible{border-color:var(--accent);outline:none}
 .sw{width:18px;height:18px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 section{padding-block:48px 8px;scroll-margin-top:70px}
@@ -68,9 +68,9 @@ figure:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 <header>
   <div>
     <h1>Perdizes 57 · subsolo</h1>
-    <p class="lede">The opened-up lower level from the 3D plan, dressed in seven finishes. Same six camera positions in every style, so you can compare like for like. Tap any photo to enlarge; use ← → to step through.</p>
+    <p class="lede">The opened-up lower level from the 3D plan, dressed in seventeen finishes: seven marble and classic looks, plus ten picks from 2026 interior trends (Japandi, wabi-sabi, quiet luxury, earthy terracotta, maximalism). Same six camera positions in every style, so you can compare like for like. Tap any photo to enlarge; use ← → to step through.</p>
   </div>
-  <div class="spec"><b>12.1 × 10.6 m</b> open plan<br>ceiling <b>2.70 m</b> · exposed steel I-beams<br>glazed to the pool · 6 views × 7 styles</div>
+  <div class="spec"><b>12.1 × 10.6 m</b> open plan<br>ceiling <b>2.70 m</b> · exposed steel I-beams<br>glazed to the pool · 6 views × 17 styles</div>
 </header>
 <nav id="nav" aria-label="Styles"></nav>
 <main id="main"></main>
@@ -97,7 +97,17 @@ var STYLES=[
  ["travertine_limestone","Travertine","#cdb795","Honed travertine floor, island and fireplace · limestone plaster walls · light oak · sand and terracotta linen, rattan, potted olives"],
  ["breccia_rosso_marble","Breccia & rosso","#8a3b34","Breccia Capraia and Rosso Levanto marble · cherry and dark walnut · oxblood and terracotta upholstery · chrome and brass"],
  ["modern_minimal","Modern minimal","#8b8e8b","Seamless microcement floor and walls · matte graphite kitchen · dark walnut panels · black steel · recessed linear light"],
- ["nordic","Nordic","#d9d3c4","White-washed wide-plank oak · pale grey walls · ash and birch joinery · oatmeal and sage wool · paper pendants, plants"]];
+ ["nordic","Nordic","#d9d3c4","White-washed wide-plank oak · pale grey walls · ash and birch joinery · oatmeal and sage wool · paper pendants, plants"],
+ ["greek_aegean","Greek Aegean","#3d6fa8","Whitewashed lime plaster, curved built-in banquettes · Thassos marble island and fireplace · olive wood, bleached oak, rush chairs · cobalt ceramics"],
+ ["wood_wrapped","Wood-wrapped","#7a4f2c","Slatted oak ceiling between the beams · full-height fluted walnut panelling · oiled wide-plank oak · tobacco leather and wool"],
+ ["japandi","Japandi","#b9a88a","Honey oak and ash · limewash greige walls · shoji screens, low linen sofa · black-stained timber · aged brass"],
+ ["wabi_sabi","Wabi-sabi","#9a8f73","Hand-troweled clay plaster · rough limestone island · reclaimed timber · undyed linen · moss green and sand ochre"],
+ ["brazilian_tropical_modernism","Brazilian modernism","#4f6b3a","Jacaranda and freijó · Sergio Rodrigues Mole chair · cane, cobogó breeze-block screen · terrazzo · big tropical plants"],
+ ["organic_modern","Organic modern","#cbbfae","Curved cream bouclé · rounded plaster fireplace · bark-textured plaster wall · travertine tables · mushroom and taupe"],
+ ["terracotta_mediterranean","Terracotta & earth","#b35f3c","Handmade terracotta herringbone floor · green zellige backsplash · unlacquered brass · clay-pink plaster · rust linen"],
+ ["paulista_brutalism","Paulista brutalism","#7e7c77","Board-formed concrete walls and ceiling · cast-concrete island · jatobá built-ins · black leather Brazilian modernist chairs"],
+ ["chocolate_maximalist","Chocolate maximalist","#4a2a1e","Colour-drenched chocolate walls and ceiling · burgundy velvet · vintage rugs and antiques · burl wood · art-filled walls"],
+ ["retro_70s_revival","’70s revival","#b07a2a","Rust corduroy modular sofa · burl walnut and smoked glass · cork panels · chrome tubular chairs · globe pendants, shag rug"]];
 var nav=document.getElementById('nav'),main=document.getElementById('main'),all=[];
 function fig(src,cap,lead){
   var f=document.createElement('figure');f.tabIndex=0;if(lead)f.className='lead';
