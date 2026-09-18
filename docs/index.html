@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perdizes 57 Lookbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#eceee8; --paper:#f7f8f4; --ink:#1d2420; --muted:#626d66; --line:#d3d8d0;
+  --accent:#2c4a3e; --onaccent:#f3f5ef;
+  --display:"Italiana","Didot","Bodoni 72",Georgia,serif;
+  --body:"Figtree","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#131815; --paper:#1a201c; --ink:#e7ebe5; --muted:#98a39c; --line:#2d3530;
+    --accent:#8fc2ab; --onaccent:#10231b;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#131815; --paper:#1a201c; --ink:#e7ebe5; --muted:#98a39c; --line:#2d3530;
+  --accent:#8fc2ab; --onaccent:#10231b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 15px/1.55 var(--body);padding-inline:clamp(16px,4vw,48px);padding-block:0 64px}
+.wrap{max-width:1320px;margin:0 auto}
+header{padding-block:40px 24px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;border-bottom:1px solid var(--line)}
+h1{font:400 clamp(40px,7vw,84px)/.95 var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.lede{max-width:60ch;color:var(--muted);margin:14px 0 0}
+.spec{font:400 12px/1.7 var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
+.spec b{color:var(--ink);font-weight:500}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:8px;flex-wrap:wrap;padding-block:14px;border-bottom:1px solid var(--line)}
+nav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font:500 13px/1 var(--body);padding:8px 12px 8px 8px;border:1px solid var(--line);border-radius:99px;background:var(--paper)}
+nav a:hover,nav a:focus-visible{border-color:var(--accent);outline:none}
+.sw{width:18px;height:18px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+section{padding-block:48px 8px;scroll-margin-top:70px}
+.shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:12px 40px;align-items:end;margin-bottom:20px}
+h2{font:400 clamp(30px,4.2vw,48px)/1 var(--display);margin:0;display:flex;align-items:center;gap:14px}
+h2 .sw{width:30px;height:30px}
+.mats{font:400 12.5px/1.6 var(--mono);color:var(--muted);margin:0;max-width:70ch}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+figure{margin:0;position:relative;overflow:hidden;background:var(--paper);cursor:zoom-in;grid-column:span 2}
+figure.lead{grid-column:span 4;grid-row:span 2}
+figure img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:3/2;transition:transform .6s ease}
+figure:hover img{transform:scale(1.025)}
+figcaption{position:absolute;left:10px;bottom:10px;font:500 11px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:#fff;background:rgba(15,20,17,.55);padding:6px 8px;backdrop-filter:blur(4px)}
+figure:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.models{margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
+.models h2{font-size:28px}
+.models .grid figure{cursor:zoom-in}
+#lb{position:fixed;inset:0;z-index:20;background:rgba(10,13,11,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
+#lb img{max-width:100%;max-height:calc(100% - 64px);object-fit:contain}
+#lb .cap{color:#e7ebe5;font:400 12px/1.4 var(--mono);margin-top:12px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center}
+#lb button{appearance:none;border:1px solid #4a544e;background:transparent;color:#e7ebe5;font:500 12px/1 var(--body);padding:8px 12px;border-radius:99px;cursor:pointer}
+#lb button:focus-visible{outline:2px solid #8fc2ab}
+@media (max-width:760px){
+  header{grid-template-columns:1fr}.spec{text-align:left}
+  .shead{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  figure,figure.lead{grid-column:span 1;grid-row:auto}
+  figure.lead{grid-column:span 2}
+}
+@media (prefers-reduced-motion:reduce){figure img{transition:none}figure:hover img{transform:none}}
+</style>
+</head><body>
+
+<div class="wrap">
+<header>
+  <div>
+    <h1>Perdizes 57 · subsolo</h1>
+    <p class="lede">The opened-up lower level from the 3D plan, dressed in seven finishes. Same six camera positions in every style, so you can compare like for like. Tap any photo to enlarge; use ← → to step through.</p>
+  </div>
+  <div class="spec"><b>12.1 × 10.6 m</b> open plan<br>ceiling <b>2.70 m</b> · exposed steel I-beams<br>glazed to the pool · 6 views × 7 styles</div>
+</header>
+<nav id="nav" aria-label="Styles"></nav>
+<main id="main"></main>
+<div class="models">
+  <h2>From the model</h2>
+  <p class="mats">The massing views each photo was built from: eye level, 1.5 m, proposed layout.</p>
+  <div class="grid" id="models"></div>
+</div>
+</div>
+<div id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lbimg" alt="">
+  <div class="cap"><button id="prev">← Prev</button><span id="lbcap"></span><button id="next">Next →</button><button id="close">Close</button></div>
+</div>
+
+<script>
+var VIEWS=[
+ ["v1_living_to_pool","Living → pool"],["v4_fireplace_stairs","Fireplace + stairs"],
+ ["v5_wide_from_pool","Whole level from the pool"],["v2_kitchen","Kitchen"],
+ ["v6_kitchen_to_living","Kitchen → living"],["v3_dining","Dining"]];
+var STYLES=[
+ ["green_marble_wood","Green marble & wood","#3f5a4a","Verde Guatemala / Verde Alpi marble on island, counters, fireplace and dining top · walnut and fluted oak joinery · oak herringbone · olive velvet, cream bouclé · brushed brass"],
+ ["calacatta_white_marble","Calacatta white","#e9e4da","Bookmatched Calacatta Oro with gold-grey veining · pale natural oak floor and cabinets · ivory linen · brushed brass"],
+ ["nero_marquina_black_marble","Nero Marquina","#1e1d1c","Black marble with white veining on island and fireplace · smoked oak · blackened steel and bronze · cognac leather, charcoal velvet"],
+ ["travertine_limestone","Travertine","#cdb795","Honed travertine floor, island and fireplace · limestone plaster walls · light oak · sand and terracotta linen, rattan, potted olives"],
+ ["breccia_rosso_marble","Breccia & rosso","#8a3b34","Breccia Capraia and Rosso Levanto marble · cherry and dark walnut · oxblood and terracotta upholstery · chrome and brass"],
+ ["modern_minimal","Modern minimal","#8b8e8b","Seamless microcement floor and walls · matte graphite kitchen · dark walnut panels · black steel · recessed linear light"],
+ ["nordic","Nordic","#d9d3c4","White-washed wide-plank oak · pale grey walls · ash and birch joinery · oatmeal and sage wool · paper pendants, plants"]];
+var nav=document.getElementById('nav'),main=document.getElementById('main'),all=[];
+function fig(src,cap,lead){
+  var f=document.createElement('figure');f.tabIndex=0;if(lead)f.className='lead';
+  var i=document.createElement('img');i.src=src;i.alt=cap;i.loading='lazy';i.decoding='async';
+  var c=document.createElement('figcaption');c.textContent=cap.split(' — ')[0];
+  f.append(i,c);var idx=all.length;all.push({src:src,cap:cap});
+  f.onclick=function(){open(idx)};f.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(idx)}};
+  return f;
+}
+STYLES.forEach(function(s){
+  var a=document.createElement('a');a.href='#'+s[0];a.innerHTML='<span class="sw" style="background:'+s[2]+'"></span>'+s[1];nav.append(a);
+  var sec=document.createElement('section');sec.id=s[0];
+  sec.innerHTML='<div class="shead"><h2><span class="sw" style="background:'+s[2]+'"></span>'+s[1]+'</h2><p class="mats">'+s[3]+'</p></div>';
+  var g=document.createElement('div');g.className='grid';
+  VIEWS.forEach(function(v,k){g.append(fig('img/'+s[0]+'/'+v[0]+'.jpg',v[1]+' — '+s[1],k===0));});
+  sec.append(g);main.append(sec);
+});
+var mg=document.getElementById('models');
+VIEWS.forEach(function(v){mg.append(fig('img/views/'+v[0]+'.jpg',v[1]+' — massing model'));});
+var lb=document.getElementById('lb'),li=document.getElementById('lbimg'),lc=document.getElementById('lbcap'),cur=0,last=null;
+function show(){li.src=all[cur].src;li.alt=all[cur].cap;lc.textContent=all[cur].cap+'  ·  '+(cur+1)+' / '+all.length;}
+function open(i){last=document.activeElement;cur=i;show();lb.hidden=false;document.getElementById('close').focus();}
+function close(){lb.hidden=true;if(last)last.focus();}
+function step(d){cur=(cur+d+all.length)%all.length;show();}
+document.getElementById('prev').onclick=function(){step(-1)};
+document.getElementById('next').onclick=function(){step(1)};
+document.getElementById('close').onclick=close;
+lb.onclick=function(e){if(e.target===lb)close();};
+document.addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);});
+</script>
+</body></html>
