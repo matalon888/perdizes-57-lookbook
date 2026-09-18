@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>html,body{margin:0;height:100%;overflow:hidden;background:#dfe5dc}canvas{display:block}</style></head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// Proposed-mode scene from the Perdizes 57 artifact, first-person camera from URL params.
+// Params (sketch coords): cx,cy,cz = camera, tx,ty,tz = look target, fov
+var q=new URLSearchParams(location.search);
+var renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(1); renderer.setSize(1536,1024);
+renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputEncoding=THREE.sRGBEncoding;
+document.body.appendChild(renderer.domElement);
+var scene=new THREE.Scene(); scene.background=new THREE.Color(0xdfe5dc);
+var camera=new THREE.PerspectiveCamera(+q.get('fov')||68,1536/1024,0.05,250);
+scene.add(new THREE.HemisphereLight(0xf4f7ee,0x9aa48f,0.9));
+var sun=new THREE.DirectionalLight(0xfff3dd,0.8); sun.position.set(-16,26,14); sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048); sun.shadow.camera.left=-28; sun.shadow.camera.right=28; sun.shadow.camera.top=32; sun.shadow.camera.bottom=-24;
+scene.add(sun);
+var amb=new THREE.PointLight(0xfff6e8,0.5,14); amb.position.set(6,2.3,5); scene.add(amb);
+var H=2.7,T=0.26,W=12.1,D=10.6,GX=8.9,BL=7.9,SR=8.1;
+var world=new THREE.Group(); world.scale.x=-1; world.position.x=W; scene.add(world);
+function S(c,r,o){return new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:r},o||{}));}
+var M={wall:S(0xc9c2b4,.9),wallIn:S(0xd8d2c6,.95),floor:S(0xa9865a,.75),conc2:S(0x9b9789,.9),
+ ceil:S(0xeeebe4,1,{side:THREE.DoubleSide}),steel:S(0x39424b,.45,{metalness:.55}),conc:S(0xb3aea3,.95),
+ glass:S(0x9fc4c9,.15,{metalness:.1,transparent:true,opacity:.25}),frame:S(0x4a4f48,.6),stone:S(0x8f8578,.95),
+ brick:S(0x9c6f56,.95),sofa:S(0x6f7d70,.95),rug:S(0xb9a98d,1),wood:S(0x5d4630,.8),kitchen:S(0xefe9dd,.7),
+ counter:S(0x6b6357,.5),car:S(0x7d838a,.6),grass:S(0x86a06b,1),pool:S(0x5fa8b8,.3),cobble:S(0xa39a8c,1),
+ dark:S(0x2a2622,1),white:S(0xffffff,.4),leaf:S(0x6d8a52,1)};
+function box(w,h,d,mat,x,y,z,p,sh){var m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=sh!==false;m.receiveShadow=true;(p||world).add(m);return m;}
+function cyl(r,h,mat,x,y,z,p){var m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,24),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;(p||world).add(m);return m;}
+function wallX(x1,x2,z,mat,h,y0,p){h=h||H;y0=y0||0;return box(Math.abs(x2-x1),h,T,mat,(x1+x2)/2,y0+h/2,z,p);}
+function wallZ(z1,z2,x,mat,h,y0,p){h=h||H;y0=y0||0;var m=box(Math.abs(z2-z1),h,T,mat,x,y0+h/2,(z1+z2)/2,p);m.rotation.y=Math.PI/2;return m;}
+// site
+box(70,0.2,84,M.grass,W/2,-0.11,10,world,false);
+box(6.2,0.06,7.5,M.cobble,9.3,-0.02,-4.4,world,false);
+box(12.1,0.06,2.0,M.stone,W/2,-0.01,D+1.0,world,false);
+box(3.7,0.12,6.3,M.pool,5.25,0.5,19.65,world,false); box(4.3,0.42,6.9,M.stone,5.25,0.34,19.65,world,false);
+function tree(x,z,r){cyl(0.2,1.7,M.wood,x,0.85,z);var c=new THREE.Mesh(new THREE.SphereGeometry(r,14,12),M.leaf);c.position.set(x,2.6+r*0.5,z);world.add(c);}
+tree(10.6,15.6,2.2);tree(-0.6,24.5,2.4);tree(14.2,10.5,1.2);tree(4,14,1.6);
+// floors/ceilings
+box(GX,0.12,D,M.floor,GX/2,0.06,D/2,world,false);
+box(W-GX,0.12,D,M.conc2,GX+(W-GX)/2,0.06,D/2,world,false);
+box(5.6,0.12,4.0,M.floor,4.0,0.06,-2.0,world,false);
+box(W,0.05,D,M.ceil,W/2,H+0.03,D/2,world,false);
+box(5.6,0.05,4.0,M.ceil,4.0,2.5,-2.0,world,false);
+// shell
+wallZ(0,D,0,M.wall); box(0.08,1.3,1.5,M.glass,0,1.5,6.9,world,false);
+wallZ(0,D,W,M.wall); box(0.08,1.2,1.3,M.glass,W,1.6,5.6,world,false);
+wallX(0,0.6,D,M.wall); wallX(8.4,GX,D,M.wall); wallX(GX,W,D,M.wall);
+box(2.4,H,0.8,M.brick,5.7,H/2,D-0.05); box(1.4,0.9,0.5,M.dark,5.7,0.7,D-0.28);
+wallX(6.6,6.9,0,M.wall); wallX(GX,9.2,0,M.wall); wallX(11.9,W,0,M.wall);
+wallX(6.9,GX,0,M.wall,0.5,2.2); wallX(9.2,11.9,0,M.wall,0.5,2.2);
+wallX(1.2,6.8,-4.0,M.wall,2.45); wallZ(-4.0,0,1.2,M.wall,2.45); wallZ(-4.0,0,6.8,M.wall,2.45);
+wallX(0,1.2,0,M.wall); wallX(3.6,6.8,0,M.wall,2.45); wallX(2.5,3.6,0,M.wall,0.5,2.0);
+box(0.08,1.2,2.2,M.glass,1.2,1.3,-2.0,world,false);
+box(2.1,0.06,0.95,M.wood,3.4,0.75,-2.6); box(0.4,2.0,2.6,M.wood,6.5,1.0,-2.0);
+// stairs, elevator, round fireplace
+for(var t=0;t<8;t++){box(1.7,0.16,0.3,M.wood,1.15,0.08+t*0.3,4.1-t*0.29);}
+box(0.05,0.85,2.4,M.frame,2.05,0.55,3.0);
+box(1.15,H,1.15,M.conc,3.45,H/2,1.85);
+cyl(0.44,1.15,M.dark,2.8,0.74,4.7); cyl(0.42,0.34,M.dark,2.8,0.17,4.7); cyl(0.11,H-1.25,M.dark,2.8,1.95,4.7);
+box(1.6,0.06,1.6,M.stone,2.8,0.16,4.7,world,false);
+// sitting room + WC
+wallX(0,2.2,2.3,M.wallIn); wallZ(0,2.3,2.2,M.wallIn);
+box(1.5,0.5,0.6,M.sofa,0.75,0.3,0.45); box(0.6,0.5,1.2,M.sofa,0.35,0.3,1.3);
+// living
+box(3.4,0.04,2.6,M.rug,4.3,0.14,6.2,world,false);
+box(2.9,0.6,0.95,M.sofa,4.6,0.4,5.3); box(0.95,0.6,1.9,M.sofa,6.3,0.4,6.4);
+box(1.25,0.32,0.75,M.wood,4.4,0.27,6.5);
+box(0.85,0.5,0.85,M.sofa,2.6,0.35,8.4); box(0.85,0.5,0.85,M.sofa,3.9,0.35,8.7);
+// PROPOSED
+function ibeam(len,alongX,x,y,z){var g=new THREE.Group();g.position.set(x,y,z);world.add(g);var dep=0.32;
+ [dep/2-0.02,-dep/2+0.02].forEach(function(oy){var f=new THREE.Mesh(new THREE.BoxGeometry(len,0.04,0.24),M.steel);f.position.y=oy;g.add(f);});
+ g.add(new THREE.Mesh(new THREE.BoxGeometry(len,dep-0.08,0.05),M.steel)); if(!alongX)g.rotation.y=Math.PI/2;}
+ibeam(GX,true,GX/2,H-0.18,BL);
+ibeam(8.0,true,4.5,H-0.18,D);
+box(3.9,2.3,0.07,M.glass,2.5,1.15,D,world,false); box(1.9,2.3,0.07,M.glass,7.45,1.15,D,world,false);
+box(0.06,2.3,0.11,M.frame,0.62,1.15,D); box(0.06,2.3,0.11,M.frame,8.38,1.15,D);
+wallZ(4.4,4.6,GX,M.wall);
+ibeam(3.4,false,GX,H-0.18,6.25);
+ibeam(W-GX,true,GX+(W-GX)/2,H-0.18,SR);
+wallZ(0,4.4,6.6,M.wall); box(0.9,2.0,0.3,M.wood,6.6,1.0,3.6);
+box(W-GX-0.15,0.03,D-0.2,M.floor,GX+(W-GX)/2,0.135,D/2,world,false);
+box(2.2,0.03,4.2,M.floor,7.75,0.135,2.2,world,false);
+box(0.62,0.9,5.4,M.kitchen,W-0.55,0.45,7.2); box(0.62,0.06,5.4,M.counter,W-0.55,0.94,7.2);
+box(2.6,1.9,0.62,M.kitchen,10.4,0.95,D-0.45);
+box(1.0,0.9,2.6,M.kitchen,9.9,0.45,6.2); box(1.1,0.06,2.7,M.counter,9.9,0.94,6.2);
+[5.3,6.2,7.1].forEach(function(z){cyl(0.19,0.62,M.wood,9.2,0.31,z);});
+box(2.4,0.06,1.1,M.wood,9.6,0.76,2.2);
+[[8.6,1.8],[10.6,1.8],[8.6,2.6],[10.6,2.6]].forEach(function(p){box(0.12,0.72,0.12,M.wood,p[0],0.38,p[1]);});
+[[8.9,1.4],[9.6,1.4],[10.3,1.4],[8.9,3.0],[9.6,3.0],[10.3,3.0]].forEach(function(p){cyl(0.2,0.46,M.sofa,p[0],0.23,p[1]);});
+box(2.0,2.2,0.08,M.glass,7.9,1.1,0,world,false); box(2.6,2.2,0.08,M.glass,10.55,1.1,0,world,false);
+box(1.6,0.42,0.8,M.sofa,5.6,0.32,2.6); box(0.9,0.36,0.6,M.wood,5.6,0.3,1.5);
+// camera (sketch coords, mirrored)
+function P(a,b,c){return new THREE.Vector3(W-a,b,c);}
+camera.position.copy(P(+q.get('cx'),+q.get('cy'),+q.get('cz')));
+camera.lookAt(P(+q.get('tx'),+q.get('ty'),+q.get('tz')));
+renderer.render(scene,camera); window.__done=true;
+</script></body></html>
