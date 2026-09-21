@@ -48,6 +48,10 @@ figure:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .models{margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
 .models h2{font-size:28px}
 .models .grid figure{cursor:zoom-in}
+.refs{margin-top:10px;grid-template-columns:repeat(6,1fr)}
+.refs figure{grid-column:span 1}
+.refs figure img{aspect-ratio:4/5}
+@media (max-width:760px){.refs figure{grid-column:span 1}}
 #lb{position:fixed;inset:0;z-index:20;background:rgba(10,13,11,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
 #lb img{max-width:100%;max-height:calc(100% - 64px);object-fit:contain}
 #lb .cap{color:#e7ebe5;font:400 12px/1.4 var(--mono);margin-top:12px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center}
@@ -68,9 +72,9 @@ figure:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 <header>
   <div>
     <h1>Perdizes 57 · subsolo</h1>
-    <p class="lede">The opened-up lower level from the 3D plan, dressed in seventeen finishes: seven marble and classic looks, plus ten picks from 2026 interior trends (Japandi, wabi-sabi, quiet luxury, earthy terracotta, maximalism). Same six camera positions in every style, so you can compare like for like. Tap any photo to enlarge; use ← → to step through.</p>
+    <p class="lede">The opened-up lower level from the 3D plan, dressed in eighteen finishes: seven marble and classic looks, ten picks from 2026 interior trends (Japandi, wabi-sabi, quiet luxury, earthy terracotta, maximalism), and one built from the two Instagram references you sent. Same six camera positions in every style, so you can compare like for like. Tap any photo to enlarge; use ← → to step through.</p>
   </div>
-  <div class="spec"><b>12.1 × 10.6 m</b> open plan<br>ceiling <b>2.70 m</b> · exposed steel I-beams<br>glazed to the pool · 6 views × 17 styles</div>
+  <div class="spec"><b>12.1 × 10.6 m</b> open plan<br>ceiling <b>2.70 m</b> · exposed steel I-beams<br>glazed to the pool · 6 views × 18 styles<br>14 angles in your reference style</div>
 </header>
 <nav id="nav" aria-label="Styles"></nav>
 <main id="main"></main>
@@ -90,7 +94,13 @@ var VIEWS=[
  ["v1_living_to_pool","Living → pool"],["v4_fireplace_stairs","Fireplace + stairs"],
  ["v5_wide_from_pool","Whole level from the pool"],["v2_kitchen","Kitchen"],
  ["v6_kitchen_to_living","Kitchen → living"],["v3_dining","Dining"]];
+var EXTRA=[
+ ["e1_facade_from_pool","Facade from the pool"],["e3_garden_corner","From the garden corner"],
+ ["e2_terrace","Along the terrace"],["e4_aerial","Over the pool"],
+ ["v7_stairs_hall","Stairs + elevator"],["v10_corner_wide","Corner, whole floor"],
+ ["v8_lounge_middle","Second lounge"],["v9_island_close","Island, close"]];
 var STYLES=[
+ ["boho_adobe","Boho adobe (your 2 refs)","#c8a487","Hand-troweled lime plaster with rounded edges and arched openings (exterior ref) · warm clay tones, rattan pendants, macramé, wicker, berber rugs, cream slipcovered sofas, terracotta cushions, many plants (interior ref)"],
  ["green_marble_wood","Green marble & wood","#3f5a4a","Verde Guatemala / Verde Alpi marble on island, counters, fireplace and dining top · walnut and fluted oak joinery · oak herringbone · olive velvet, cream bouclé · brushed brass"],
  ["calacatta_white_marble","Calacatta white","#e9e4da","Bookmatched Calacatta Oro with gold-grey veining · pale natural oak floor and cabinets · ivory linen · brushed brass"],
  ["nero_marquina_black_marble","Nero Marquina","#1e1d1c","Black marble with white veining on island and fireplace · smoked oak · blackened steel and bronze · cognac leather, charcoal velvet"],
@@ -123,6 +133,13 @@ STYLES.forEach(function(s){
   sec.innerHTML='<div class="shead"><h2><span class="sw" style="background:'+s[2]+'"></span>'+s[1]+'</h2><p class="mats">'+s[3]+'</p></div>';
   var g=document.createElement('div');g.className='grid';
   VIEWS.forEach(function(v,k){g.append(fig('img/'+s[0]+'/'+v[0]+'.jpg',v[1]+' — '+s[1],k===0));});
+  if(s[0]==='boho_adobe'){
+    EXTRA.forEach(function(v){g.append(fig('img/'+s[0]+'/'+v[0]+'.jpg',v[1]+' — '+s[1]));});
+    var rg=document.createElement('div');rg.className='grid refs';
+    rg.append(fig('img/refs/outside_ref.jpg','Exterior reference — the shell'),
+              fig('img/refs/inside_ref.jpg','Interior reference — the styling'));
+    sec.append(rg);
+  }
   sec.append(g);main.append(sec);
 });
 var mg=document.getElementById('models');
