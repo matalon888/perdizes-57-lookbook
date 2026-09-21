@@ -15,6 +15,18 @@ VIEWS.update({
  "e4_aerial": "EXTERIOR AERIAL: raised three-quarter view over the garden showing the roof, the house volume, the terrace and the swimming pool together",
 })
 STYLE = "boho_adobe"
+VIEWS.update({
+ "v11_office": "the separate office / study annex off the hall — desk facing a window, bookshelf wall, a small armchair, seen through its open doorway",
+ "v12_sitting_corner": "the small sitting room in the corner by the stairs, a compact sofa and armchair against two solid walls, with the guest WC door beside it",
+ "v13_hearth_close": "close view of the round free-standing stove on its stone hearth beside the staircase, its flue rising to the ceiling, seating around it",
+ "v14_glasswall_along": "standing inside next to the pool glazing, looking along the length of the glass wall, the terrace and garden on one side and the living room on the other",
+ "v15_dining_to_kitchen": "from the dining table looking down the length of the kitchen — island, stools and counter run leading to the tall pantry wall at the far end",
+ "v16_from_stairs_top": "from the top of the staircase looking down over the whole open level — seating, the masonry fireplace on the glass wall, kitchen beyond",
+ "e5_entrance_side": "EXTERIOR: the arrival side of the house seen from the driveway — two large glazed openings where the garage doors were, cobbled drive leading to the house, planting either side",
+ "e6_pool_close": "EXTERIOR: low viewpoint right at the water's edge, pool surface filling the foreground and the glazed house rising behind it",
+ "e7_side_elevation": "EXTERIOR: the side elevation of the house across the lawn, showing the depth of the building, the terrace edge and garden trees",
+ "e8_dusk_facade": "EXTERIOR AT DUSK: the garden facade across the pool after sunset, warm interior lights glowing through the glass, lanterns lit on the terrace, deep blue sky",
+})
 EXT_PROMPT = (
  "Photorealistic architectural EXTERIOR photograph, Architectural Digest quality, golden afternoon light. "
  "The FIRST image is a rough 3D massing model of a São Paulo house and its garden — keep EXACTLY its camera angle, "

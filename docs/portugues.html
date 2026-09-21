@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perdizes à Portuguesa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=Karla:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --cal:#f4f2ec; --paper:#fbfaf6; --ink:#17233c; --muted:#5d6a80; --line:#dcd8cc;
+  --azul:#2f5ea8; --azul-deep:#1b3f78; --terra:#b1603c; --gold:#a8843c;
+  --display:"Prata","Hoefler Text",Georgia,serif;
+  --body:"Karla","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --cal:#111826; --paper:#182133; --ink:#e9ecf3; --muted:#9aa7bd; --line:#2a3550; --azul:#7aa5e6; --azul-deep:#9dbdf0; --terra:#d98c62; --gold:#d3ad5f;
+  }
+}
+:root[data-theme="dark"]{
+  --cal:#111826; --paper:#182133; --ink:#e9ecf3; --muted:#9aa7bd; --line:#2a3550;
+  --azul:#7aa5e6; --azul-deep:#9dbdf0; --terra:#d98c62; --gold:#d3ad5f;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--cal);color:var(--ink);font:400 15px/1.6 var(--body)}
+.wrap{max-width:1340px;margin:0 auto;padding-inline:clamp(16px,4vw,44px)}
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--paper)}
+.hero img{display:block;width:100%;height:min(62vh,560px);object-fit:cover;object-position:center 60%}
+.hero .mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,34,.5) 0%,rgba(10,18,34,.15) 45%,rgba(10,18,34,.72) 100%)}
+.hero .txt{position:absolute;inset:auto 0 0 0;padding:0 clamp(16px,4vw,44px) clamp(20px,4vw,38px)}
+.hero .inner{max-width:1340px;margin:0 auto}
+.hero h1{font:400 clamp(38px,7.5vw,86px)/.98 var(--display);color:#fdfcf8;margin:0;text-wrap:balance}
+.hero p{color:#e4e8f2;max-width:56ch;margin:12px 0 0;font-size:clamp(14px,1.6vw,16.5px)}
+.kicker{font:500 11.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:#cfd9ec;margin-bottom:14px}
+/* tile band */
+.band{height:34px;background-repeat:repeat-x;background-size:34px 34px;border-block:1px solid var(--line)}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--cal);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:10px;overflow-x:auto;scrollbar-width:thin;padding-block:12px}
+nav a{flex:none;display:inline-flex;align-items:baseline;gap:8px;text-decoration:none;color:var(--ink);
+  font:500 13px/1 var(--body);padding:9px 14px;border:1px solid var(--line);border-radius:2px;background:var(--paper)}
+nav a em{font:400 11px/1 var(--mono);font-style:normal;color:var(--muted)}
+nav a:hover,nav a:focus-visible{border-color:var(--azul);color:var(--azul-deep);outline:none}
+/* sections */
+section{padding-block:54px 10px;scroll-margin-top:78px}
+.shead{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.15fr);gap:14px 48px;align-items:end;
+  padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:22px}
+h2{font:400 clamp(30px,4.6vw,52px)/1.02 var(--display);margin:0;color:var(--ink)}
+h2 small{display:block;font:500 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:10px}
+.mats{margin:0;color:var(--muted);font-size:14.5px;max-width:64ch}
+.groupname{font:500 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:12px;margin:26px 0 12px}
+.groupname::after{content:"";flex:1;height:1px;background:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+figure{margin:0;position:relative;overflow:hidden;background:var(--paper);border:1px solid var(--line);cursor:zoom-in}
+figure.lead{grid-column:span 2;grid-row:span 2}
+figure img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:3/2;transition:transform .7s ease}
+figure:hover img{transform:scale(1.03)}
+figcaption{position:absolute;left:0;bottom:0;font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  color:#fbfaf6;background:rgba(23,35,60,.68);padding:7px 10px}
+figure:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+/* refs + footer */
+.refs{margin-top:60px;padding-block:26px 40px;border-top:1px solid var(--line)}
+.refs h2{font-size:26px}
+.refgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.refgrid figure img{aspect-ratio:4/5}
+footer{padding-block:24px 48px;color:var(--muted);font:400 12.5px/1.7 var(--mono);border-top:1px solid var(--line)}
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:20;background:rgba(12,18,30,.95);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
+#lb img{max-width:100%;max-height:calc(100% - 66px);object-fit:contain}
+#lb .cap{color:#e9ecf3;font:400 12px/1.4 var(--mono);margin-top:14px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center}
+#lb button{appearance:none;border:1px solid #3c4a68;background:transparent;color:#e9ecf3;font:500 12px/1 var(--body);padding:9px 13px;border-radius:2px;cursor:pointer}
+#lb button:hover{border-color:#7aa5e6}
+#lb button:focus-visible{outline:2px solid #7aa5e6}
+@media (max-width:900px){.grid,.refgrid{grid-template-columns:repeat(2,1fr)}figure.lead{grid-column:span 2;grid-row:auto}}
+@media (max-width:560px){.shead{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){figure img{transition:none}figure:hover img{transform:none}}
+</style>
+</head><body>
+
+<div class="hero">
+  <img id="heroimg" src="img/boho_azulejo/e1_facade_from_pool.jpg" alt="The house seen across the pool, in Lisbon azulejo style">
+  <div class="mask"></div>
+  <div class="txt"><div class="inner">
+    <div class="kicker">Perdizes 57 · casa &amp; subsolo</div>
+    <h1>Perdizes à Portuguesa</h1>
+    <p>Your white-plaster house, built from the two reference photos — then the same house again with classical Portuguese work layered on: Lisbon azulejo, the Alentejo painted stripe, the Moorish Algarve. Twenty-four angles in each, inside and out.</p>
+  </div></div>
+</div>
+<div class="band" id="band"></div>
+<nav aria-label="Styles"><div class="wrap" id="nav"></div></nav>
+<div class="wrap"><main id="main"></main>
+
+<div class="refs">
+  <h2>The two references</h2>
+  <p class="mats">Everything starts from the 3D plan of the subsolo; the shell comes from the first photo, the styling from the second; the Portuguese layers sit on top of that.</p>
+  <div class="refgrid" id="refgrid"></div>
+</div>
+<footer>
+  12.1 × 10.6 m open plan · ceiling 2.70 m · exposed steel beams kept in every version<br>
+  Same camera positions in all four versions · 96 photographs · 8 outside, 16 inside
+</footer>
+</div>
+
+<div id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lbimg" alt="">
+  <div class="cap"><button id="prev">← Anterior</button><span id="lbcap"></span><button id="next">Seguinte →</button><button id="close">Fechar</button></div>
+</div>
+
+<script>
+var OUT=[["e1_facade_from_pool","Facade from the pool"],["e3_garden_corner","From the garden"],
+         ["e2_terrace","Along the terrace"],["e4_aerial","Over the pool"],
+         ["e8_dusk_facade","Facade at dusk"],["e5_entrance_side","Arrival side"],
+         ["e6_pool_close","At the water's edge"],["e7_side_elevation","Side elevation"]];
+var IN=[["v1_living_to_pool","Living → pool"],["v4_fireplace_stairs","Fireplace + stairs"],
+        ["v5_wide_from_pool","Whole level"],["v2_kitchen","Kitchen"],
+        ["v6_kitchen_to_living","Kitchen → living"],["v3_dining","Dining"],
+        ["v7_stairs_hall","Stairs + elevator"],["v10_corner_wide","Corner, whole floor"],
+        ["v8_lounge_middle","Second lounge"],["v9_island_close","Island, close"],
+        ["v16_from_stairs_top","From the stairs"],["v14_glasswall_along","Along the glass wall"],
+        ["v13_hearth_close","The stove, close"],["v15_dining_to_kitchen","Dining → kitchen"],
+        ["v11_office","Office annex"],["v12_sitting_corner","Sitting room"]];
+var STYLES=[
+ ["boho_adobe","Boho adobe","A base · as suas referências",
+  "The house as designed from your two reference photos: hand-troweled lime plaster with rounded corners and arched openings, thatch and bamboo, teak decking; inside, clay tones, rattan pendants, macramé, wicker, berber rugs, cream sofas and plants."],
+ ["boho_azulejo","+ Azulejo","Lisboa · azulejaria",
+  "The same house with hand-painted blue-and-white azulejo added into the plaster: a wainscot band, a framed tile picture panel, tiled stair risers, a tiled kitchen backsplash and tiled steps outside."],
+ ["boho_alentejo","+ Alentejo","Planície · quinta",
+  "The same house with Alentejo farmhouse detail: the traditional ochre-yellow painted stripe around every opening, chestnut beams over a cane (caniço) ceiling, glazed brown pottery, cork and olive wood, rush-seat chairs."],
+ ["boho_algarve","+ Algarve","Sul · herança moura",
+  "The same house with Algarve Moorish detail: sea-green and sky-blue trim, latticed chimney tops and pierced plaster screens, hydraulic patterned floor tiles, calçada portuguesa paving, Moorish lanterns, figs and citrus."]];
+
+var nav=document.getElementById('nav'),main=document.getElementById('main'),all=[];
+function fig(src,cap,lead){
+  var f=document.createElement('figure');f.tabIndex=0;if(lead)f.className='lead';
+  var i=document.createElement('img');i.src=src;i.alt=cap;i.loading='lazy';i.decoding='async';
+  var c=document.createElement('figcaption');c.textContent=cap.split(' — ')[0];
+  f.append(i,c);var idx=all.length;all.push({src:src,cap:cap});
+  f.onclick=function(){openLb(idx)};
+  f.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(idx)}};
+  return f;
+}
+function row(style,label,views,leadFirst){
+  var h=document.createElement('div');h.className='groupname';h.textContent=label;
+  var g=document.createElement('div');g.className='grid';
+  views.forEach(function(v,k){g.append(fig('img/'+style[0]+'/'+v[0]+'.jpg',v[1]+' — '+style[1],leadFirst&&k===0));});
+  return [h,g];
+}
+STYLES.forEach(function(s){
+  var a=document.createElement('a');a.href='#'+s[0];a.innerHTML=s[1]+' <em>'+s[2]+'</em>';nav.append(a);
+  var sec=document.createElement('section');sec.id=s[0];
+  sec.innerHTML='<div class="shead"><h2><small>'+s[2]+'</small>'+s[1]+'</h2><p class="mats">'+s[3]+'</p></div>';
+  row(s,'Fora · outside',OUT,true).forEach(function(el){sec.append(el)});
+  row(s,'Dentro · inside',IN,true).forEach(function(el){sec.append(el)});
+  main.append(sec);
+});
+var rg=document.getElementById('refgrid');
+rg.append(fig('img/refs/outside_ref.jpg','Exterior reference — the shell'),
+          fig('img/refs/inside_ref.jpg','Interior reference — the styling'),
+          fig('img/views/e1_facade_from_pool.jpg','3D plan — the house from the pool'),
+          fig('img/views/v1_living_to_pool.jpg','3D plan — living toward the pool'));
+
+// azulejo band, drawn once as a tiny SVG pattern
+(function(){
+  var blue=getComputedStyle(document.documentElement).getPropertyValue('--azul').trim()||'#2f5ea8';
+  var svg='<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">'+
+    '<rect width="34" height="34" fill="none"/>'+
+    '<path d="M17 3 L24 10 L17 17 L10 10 Z M17 17 L24 24 L17 31 L10 24 Z" fill="none" stroke="'+blue+'" stroke-width="1.1"/>'+
+    '<circle cx="17" cy="17" r="1.6" fill="'+blue+'"/>'+
+    '<path d="M0 0 L6 6 M34 0 L28 6 M0 34 L6 28 M34 34 L28 28" stroke="'+blue+'" stroke-width="1.1" fill="none"/></svg>';
+  document.getElementById('band').style.backgroundImage="url('data:image/svg+xml;utf8,"+encodeURIComponent(svg)+"')";
+})();
+
+var lb=document.getElementById('lb'),li=document.getElementById('lbimg'),lc=document.getElementById('lbcap'),cur=0,last=null;
+function show(){li.src=all[cur].src;li.alt=all[cur].cap;lc.textContent=all[cur].cap+'  ·  '+(cur+1)+' / '+all.length;}
+function openLb(i){last=document.activeElement;cur=i;show();lb.hidden=false;document.getElementById('close').focus();}
+function closeLb(){lb.hidden=true;if(last)last.focus();}
+function step(d){cur=(cur+d+all.length)%all.length;show();}
+document.getElementById('prev').onclick=function(){step(-1)};
+document.getElementById('next').onclick=function(){step(1)};
+document.getElementById('close').onclick=closeLb;
+lb.onclick=function(e){if(e.target===lb)closeLb();};
+document.addEventListener('keydown',function(e){if(lb.hidden)return;
+  if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);});
+</script>
+</body></html>
